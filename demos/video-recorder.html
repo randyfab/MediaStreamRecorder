@@ -110,12 +110,15 @@
         </section>
         <script>
             function captureUserMedia(mediaConstraints, successCallback, errorCallback) {
-                navigator.mediaDevices.getUserMedia(mediaConstraints).then(successCallback).catch(errorCallback);
+                navigator.mediaDevices.getDisplayMedia(mediaConstraints).then(successCallback).catch(errorCallback);
             }
 
             var mediaConstraints = {
                 audio: !IsOpera && !IsEdge, // record both audio/video in Firefox/Chrome
-                video: true
+                video: {
+                    cursor: "never"
+                },
+                
             };
 
             document.querySelector('#start-recording').onclick = function() {
